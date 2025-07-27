@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>To-Do List App</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+
+  <div class="container">
+    <h1>📋 To-Do List</h1>
+
+    <ul>
+      {% for task in tasks %}
+        <li>
+          <strong>{{ task.title }}</strong> — {{ task.date }}<br>
+          <small>Folder: {{ task.folder }}</small><br>
+
+          {% if task.note %}
+            <em>📝 {{ task.note }}</em><br>
+          {% endif %}
+
+          {% if task.alarm %}
+            ⏰ Alarm: {{ task.alarm }}<br>
+          {% endif %}
+
+          {% if task.repeat %}
+            🔁 Repeats on: {{ task.repeat_days | join(', ') }}<br>
+          {% endif %}
+
+          <a href="/delete/{{ task.id }}">🗑 Delete</a> |
+          <a href="/share/{{ task.id }}">🤝 Share</a>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <a href="#"><img src="{{ url_for('static', filename='boat.png') }}" alt="Add Task" class="boat-btn"></a>
+  </div>
+
+  <div class="form-box">
+    <form action="/add" method="POST">
+      <input type="text" name="title" placeholder="Task Title" required><br>
+      <input type="date" name="date" required><br>
+      <input type="time" name="alarm"><br>
+      <textarea name="note" placeholder="Optional note"></textarea><br>
+
+      <select name="folder">
+        <option value="Personal">Personal</option>
+        <option value="Business">Business</option>
+      </select><br>
+
+      <label>
+        <input type="checkbox" name="repeat" id="repeat-check" onchange="toggleRepeatOptions()"> Repeat
+      </label><br>
+
+      <div id="repeat-options" style="display: none;">
+        <p>Repeat on:</p>
+        <label><input type="checkbox" name="repeat_days" value="Monday"> Mon</label>
+        <label><input type="checkbox" name="repeat_days" value="Tuesday"> Tue</label>
+        <label><input type="checkbox" name="repeat_days" value="Wednesday"> Wed</label>
+        <label><input type="checkbox" name="repeat_days" value="Thursday"> Thu</label>
+        <label><input type="checkbox" name="repeat_days" value="Friday"> Fri</label>
+        <label><input type="checkbox" name="repeat_days" value="Saturday"> Sat</label>
+        <label><input type="checkbox" name="repeat_days" value="Sunday"> Sun</label>
+      </div>
+
+      <button type="submit">Add Task</button>
+    </form>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+<script>
+  function toggleRepeatOptions() {
+    const isChecked = document.getElementById('repeat-check').checked;
+    const box = document.getElementById('repeat-options');
+    if (box) {
+      box.style.display = isChecked ? 'block' : 'none';
+    }
+  }
+
+  window.onload = () => {
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    document.body.classList.add(savedTheme);
+    toggleRepeatOptions();  // Make sure repeat options are shown if pre-checked
+  };
+</script>
+
+</body>
+</html>
