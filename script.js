@@ -1,11 +1,21 @@
-function toggleRepeatOptions() {
-  const isChecked = document.getElementById('repeat-check').checked;
-  document.getElementById('repeat-options').style.display = isChecked ? 'block' : 'none';
+function toggleTheme() {
+  const body = document.body;
+  if (body.classList.contains("theme-light")) {
+    body.classList.remove("theme-light");
+    body.classList.add("theme-dark");
+    localStorage.setItem("theme", "dark");
+  } else {
+    body.classList.remove("theme-dark");
+    body.classList.add("theme-light");
+    localStorage.setItem("theme", "light");
+  }
 }
 
-// On page load
+// Load saved theme
 window.onload = () => {
-  const savedTheme = localStorage.getItem('theme') || 'dark';
-  document.body.classList.add(savedTheme);
-  toggleRepeatOptions();
+  const theme = localStorage.getItem("theme");
+  if (theme === "dark") {
+    document.body.classList.remove("theme-light");
+    document.body.classList.add("theme-dark");
+  }
 };

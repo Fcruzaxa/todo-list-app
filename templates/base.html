@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}To-Do App{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='theme.js') }}" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1><a href="{{ url_for('index') }}">To-Do App</a></h1>
+        {% if current_user.is_authenticated %}
+        <nav>
+            <a href="{{ url_for('calendar_view') }}">Calendar</a>
+            <a href="{{ url_for('kanban_view') }}">Kanban</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </nav>
+        {% endif %}
+        <button id="toggle-theme">🌙</button>
+    </header>
+
+    <main>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class="flashes">
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </main>
+</body>
+
+</html>

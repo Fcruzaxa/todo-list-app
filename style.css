@@ -1,25 +1,57 @@
 body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to right, #667eea, #764ba2);
-  margin: 0;
+  font-family: Arial, sans-serif;
+  margin: 20px;
   padding: 0;
-  color: #fff;
-  min-height: 100vh;
+  transition: background 0.3s, color 0.3s;
 }
 
-.container {
-  max-width: 800px;
-  margin: 40px auto;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+.theme-light {
+  background-color: #f9f9f9;
+  color: #222;
 }
 
-h1 {
-  text-align: center;
-  font-size: 2.5rem;
-  margin-bottom: 30px;
+.theme-dark {
+  background-color: #121212;
+  color: #f9f9f9;
+}
+
+nav {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+
+nav a {
+  text-decoration: none;
+  padding: 6px 10px;
+  background-color: #008cba;
+  color: white;
+  border-radius: 5px;
+}
+
+nav button {
+  padding: 6px 10px;
+  background-color: #222;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+main {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+form input,
+form textarea,
+form select,
+form button {
+  width: 100%;
+  padding: 8px;
+  margin: 6px 0;
+  box-sizing: border-box;
 }
 
 ul {
@@ -27,99 +59,35 @@ ul {
   padding: 0;
 }
 
-li {
-  background: rgba(255, 255, 255, 0.15);
-  padding: 15px 20px;
-  margin-bottom: 15px;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  transition: all 0.3s ease;
-}
-li:hover {
-  background: rgba(255, 255, 255, 0.25);
-}
-
-a {
-  color: #fff;
-  text-decoration: none;
-  margin-right: 10px;
-}
-a:hover {
-  text-decoration: underline;
-}
-
-.form-box {
-  margin-top: 30px;
-  padding: 20px;
-  background: rgba(0,0,0,0.3);
-  border-radius: 20px;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-}
-
-input, textarea, select, button {
-  width: 100%;
-  padding: 12px 16px;
-  margin-bottom: 15px;
-  border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  font-family: inherit;
-}
-
-input, textarea, select {
-  background-color: #f5f5f5;
-  color: #333;
-}
-
-textarea {
-  resize: vertical;
-  height: 80px;
-}
-
-button {
-  background: #38d39f;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-button:hover {
-  background: #32c68a;
-}
-
-.boat-btn {
-  width: 70px;
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  cursor: pointer;
-  animation: float 3s ease-in-out infinite;
-  transition: transform 0.3s ease;
-}
-.boat-btn:hover {
-  transform: scale(1.15);
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-#repeat-days-box input {
-  background-color: #f5f5f5;
-  color: #333;
-  margin-top: 10px;
-}
-#repeat-options {
-  margin: 10px 0;
+ul li {
+  background: #e0f7fa;
   padding: 10px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
 }
-#repeat-options label {
-  margin-right: 8px;
-  display: inline-block;
+
+.kanban {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.column {
+  flex: 1;
+  min-width: 150px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.column h3 {
+  text-align: center;
+}
+
+.card {
+  background-color: #ffffff;
+  padding: 8px;
+  margin: 6px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }

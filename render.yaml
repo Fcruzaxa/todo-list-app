@@ -1,9 +1,10 @@
 services:
   - type: web
-    name: todo-list-app
-    runtime: python
+    name: todo-app
+    env: python
     buildCommand: ""
-    startCommand: "gunicorn app:app"
+    startCommand: gunicorn app:app
+    plan: free
     envVars:
-      - key: PYTHON_VERSION
-        value: 3.11
+      - key: FLASK_ENV
+        value: production

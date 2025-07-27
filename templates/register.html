@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block content %}
+<h2>Register</h2>
+<form method="POST">
+    <input name="username" type="email" placeholder="Email" required><br>
+    <input name="password" type="password" placeholder="Password" required><br>
+    <textarea name="message" placeholder="Public message..."></textarea><br>
+    <button type="submit">Register</button>
+</form>
+<h3>Public Message Board</h3>
+<ul>
+    {% for msg in messages %}
+    <li><strong>{{ msg.username }}</strong>: {{ msg.text }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

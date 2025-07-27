@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Share Task</title>
+</head>
+
+<body>
+    <h2>Share Task: {{ task.content }}</h2>
+    <form method="POST">
+        <label>Email:</label><br>
+        <input type="email" name="email" placeholder="Enter email"><br><br>
+
+        <label>Or Mobile Number:</label><br>
+        <input type="text" name="phone" placeholder="Enter mobile number"><br><br>
+
+        <button type="submit">Share Task</button>
+    </form>
+    <br>
+    <a href="{{ url_for('index') }}">← Back to tasks</a>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+</body>
+
+</html>

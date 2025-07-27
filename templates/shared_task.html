@@ -1,19 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Shared Task</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-  <div class="container">
-    <h2>Someone shared a task with you!</h2>
-    <p><strong>{{ task.title }}</strong> — {{ task.date }}</p>
-    <p>Folder: {{ task.folder }}</p>
-    {% if task.note %}<p>Note: {{ task.note }}</p>{% endif %}
-    <p>
-      <a href="/accept/{{ task.id }}">✅ Accept</a> |
-      <a href="/decline/{{ task.id }}">❌ Decline</a>
-    </p>
-  </div>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Shared Task{% endblock %}
+{% block content %}
+<h2>Shared Task</h2>
+<p><strong>{{ task.content }}</strong> — Due: {{ task.due }}</p>
+<p>Category: {{ task.category }}</p>
+<p>Priority: {{ task.priority }}</p>
+<p>Repeat Days: {{ task.repeat_days }}</p>
+{% endblock %}
